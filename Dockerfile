@@ -1,6 +1,6 @@
-# Start with cuDNN base image
 FROM ubuntu:16.04
-MAINTAINER Yohei Kikuta <yohei-kikuta@cookpad.com>
+LABEL maintainer="diracdiego@gmail.com"
+LABEL version="1.0"
 
 # Install git, wget, bc and dependencies
 RUN apt-get update && apt-get install -y \
@@ -18,10 +18,6 @@ RUN pip3 install -r requirements.txt
 # golang setup
 RUN wget https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.11.linux-amd64.tar.gz
-
-# Add user of the name docker
-RUN useradd docker -u 1000 -s /bin/bash -m
-USER docker
 
 # Set alias for python3.5
 RUN echo "alias python=python3" >> $HOME/.bashrc && \
